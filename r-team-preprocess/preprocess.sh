@@ -10,15 +10,15 @@
 # using information from the exams metadata table (see generate_labels.py).
 #
 # Author: Thomas Schaffter (thomas.schaff...@gmail.com)
-# Last update: 2016-11-02
+# Last update: 2016-11-02 by Diah Anggraeni Pitaloka
 
-IMAGES_DIRECTORY="/dm_challenge/pilot_images"
-EXAMS_METADATA_FILENAME="/dm_challenge/r-team-preprocess/metadata/exams_metadata_pilot_20160906.tsv"
-IMAGES_CROSSWALK_FILENAME="/dm_challenge/r-team-preprocess/metadata/images_crosswalk_pilot_20160906.tsv"
+IMAGES_DIRECTORY="/trainingData"
+EXAMS_METADATA_FILENAME="/metadata/exams_metadata.tsv"
+IMAGES_CROSSWALK_FILENAME="/metadata/images_crosswalk.tsv"
 
-PREPROCESS_DIRECTORY="/dm_challenge/r-team-preprocess"
-PREPROCESS_IMAGES_DIRECTORY="$PREPROCESS_DIRECTORY/pilot_images_jpeg"
-IMAGE_LABELS_FILENAME="$PREPROCESS_DIRECTORY/metadata/image_labels.txt"
+PREPROCESS_DIRECTORY="/preprocessedData"
+PREPROCESS_IMAGES_DIRECTORY="$PREPROCESS_DIRECTORY/images"
+IMAGE_LABELS_FILENAME="$PREPROCESS_DIRECTORY/metadata/image_labels.csv"
 
 mkdir -p $PREPROCESS_IMAGES_DIRECTORY
 
@@ -29,7 +29,7 @@ find $IMAGES_DIRECTORY/ -name "*.dcm" | parallel --will-cite "convert {} -resize
 echo "JPEG images have been successfully saved to $PREPROCESS_IMAGES_DIRECTORY/."
 
 echo "Generating image labels to $IMAGE_LABELS_FILENAME"
-python /dm_challenge/r-team-preprocess/r-team-preprocess.py $EXAMS_METADATA_FILENAME $IMAGES_CROSSWALK_FILENAME $IMAGE_LABELS_FILENAME
+python r-team-preprocess.py $EXAMS_METADATA_FILENAME $IMAGES_CROSSWALK_FILENAME $IMAGE_LABELS_FILENAME
 # Replace the .dcm extension to .png
 sed -i 's/.dcm/.jpeg/g' $IMAGE_LABELS_FILENAME
 

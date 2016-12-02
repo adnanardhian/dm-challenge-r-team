@@ -34,4 +34,4 @@ if __name__ == '__main__':
     directory = os.path.dirname(labelsFilename)
     if not os.path.isdir(directory):
         os.makedirs(directory)
-    labels.to_csv(labelsFilename, sep='\t', index=False, header=True)
+    labels.to_csv(labelsFilename, sep=',', index=False, header=True)
