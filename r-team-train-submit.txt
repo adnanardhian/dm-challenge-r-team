@@ -1,0 +1,2 @@
+preprocessing=docker.synapse.org/syn7500070/dm-preprocess@sha256:89cdd50aa09c98327a6911f72982656bbf5be08162dc27943401ddd7927ae20a
+training=docker.synapse.org/syn7500070/dm-training@sha256:bf2d39ef0bcf9366ec537d4b42447946d12691348e26b8c371c9622360f57125
