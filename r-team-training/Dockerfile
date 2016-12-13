@@ -22,20 +22,14 @@ RUN conda install -y \
     h5py \
     pandas \
     scikit-learn \
-    theano \
+    tensorflow \
     pytables \
   && conda clean --yes --tarballs --packages --source-cache \
   && pip install --upgrade pip \
   && pip install --upgrade -I setuptools \
-  && pip install git+git://github.com/fchollet/keras.git
-
-# configure keras for Theano
-#RUN echo "configure Keras with Theano.."
-#RUN mkdir /root/.keras
-#RUN mkdir /root/.keras/models
-#COPY keras.json /root/.keras
-#COPY vgg16_weights_th_dim_ordering_th_kernels_notop.h5 /root/.keras/models
-#COPY .theanorc /root
+  && pip install git+git://github.com/fchollet/keras.git \
+  && pip install --upgrade -I setuptools \
+  && pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0rc0-cp27-none-linux_x86_64.whl
 
 # copy training and test files
 RUN echo "copy training & test files.."
